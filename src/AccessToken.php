@@ -196,14 +196,10 @@ class AccessToken implements \JsonSerializable
         }
         self::validateAccessToken($responseArray);
         self::validateExpiresIn($responseArray);
-        self::validateRefreshToken($responseArray);
-        self::validateRefreshTokenExpiresIn($responseArray);
 
         return new static(
             $responseArray['access_token'],
-            $responseArray['expires_in'] + time(),
-            $responseArray['refresh_token'],
-            $responseArray['refresh_token_expires_in'] + time()
+            $responseArray['expires_in'] + time()
         );
     }
     private static function validateAccessToken($responseArray)
